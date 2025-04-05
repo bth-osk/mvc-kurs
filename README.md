@@ -11,4 +11,4 @@ Clone this (osau24) course repo.
 git clone https://github.com/bth-osk/mvc-kurs
 ```
 
-![Protein view](/app/public/img/bw.png)
+![Protein view](/public/img/bw.png)

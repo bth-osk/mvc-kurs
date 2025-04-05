@@ -1,0 +1,12 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Lucky lucky{% endblock %}
+
+{% block body %}
+    <div class="{{ lucky_class }} lucky-body">
+        <h1>Slumpade siffror</h1>
+        <p>Här kan det komma att röra lite på sig, om du har mindre tur</p>
+        <p>Siffran du fick är: <b>{{ number }}</b></p>
+        <img src="{{ asset('img/' ~ lucky_image) }}" alt="Macro">
+    </div>
+{% endblock %}

@@ -1,3 +1,123 @@
+/* Animations from https://unused-css.com/blog/css-shake-animation/ */
+
+@keyframes tilt-shaking {
+    0% { transform: rotate(0deg); }
+    25% { transform: rotate(5deg); }
+    50% { transform: rotate(0eg); }
+    75% { transform: rotate(-5deg); }
+    100% { transform: rotate(0deg); }
+}
+
+@keyframes tilt-n-move-shaking {
+    0% { transform: translate(0, 0) rotate(0deg); }
+    25% { transform: translate(25px, 25px) rotate(5deg); }
+    50% { transform: translate(0, 0) rotate(0eg); }
+    75% { transform: translate(-25px, 25px) rotate(-5deg); }
+    100% { transform: translate(0, 0) rotate(0deg); }
+}
+
+@keyframes horizontal-pan {
+    0% { transform: translate(0, 0); }
+    25% { transform: translate(5%, 0); }
+    50% { transform: translate(0, 0); }
+    75% { transform: translate(-5%, 0); }
+    100% { transform: translate(0, 0); }
+}
+
+html {
+    background-color: rgb(0, 0, 0);
+    color: rgb(255, 255, 255);
+}
+
+.site-header {
+    font-size: 1rem;
+    font-weight: 700;
+    font-family: 'Courier New', Courier, monospace;
+    animation: horizontal-pan 20s infinite;
+    margin-bottom: 2rem;
+}
+
+.site-title {
+    text-align: center;
+}
+
+nav {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+}
+
+nav a {
+    padding-left: 2rem;
+    padding-right: 2rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    outline: dashed 1px white;
+    font-weight: 700;
+    text-decoration: none
+}
+
 body {
-    background-color: skyblue;
+    margin: 0 auto;
+    max-width: 900px;
+    padding: 2rem;
+}
+
+body a {
+    color: rgb(255, 0, 0);
+}
+
+.index-img-area img {
+    max-width: 60%;
+    max-height: 30%;
+    outline: solid 1px rgb(255, 255, 255);
+}
+
+.lucky-body {
+    color: rgb(0, 0, 0);
+    padding: 2rem;
+    border-radius: 12px;
+}
+
+.lucky-body img {
+    display: block;
+    max-width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.about-links {
+    display: flex;
+    width: 100%;
+    max-width: 500px;
+    justify-content: space-between;
+}
+
+h1 {
+    border-bottom: 4px solid rgb(255, 255, 255);
+}
+
+.unlucky {
+    background-color: rgb(240, 128, 128);
+    animation: tilt-shaking 0.45s infinite;
+}
+
+.lucky {
+    background-color: rgb(144, 238, 144);
+}
+
+.too-lucky {
+    background-color: rgb(255, 165, 0);
+    animation: tilt-n-move-shaking 1.40s infinite
+}
+
+footer {
+    margin-top: 3rem;
+    border-top: solid 1px rgb(255, 255, 255);
+}
+
+footer p {
+    font-weight: 700;
 }

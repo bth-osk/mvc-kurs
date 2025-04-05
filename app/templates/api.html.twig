@@ -1,0 +1,17 @@
+{% extends "base.html.twig" %}
+
+{% block title %}API overview{% endblock %}
+
+{% block body %}
+    <h1>API lista</h1>
+        <h2>quote</h2>
+            <p>Svar med slumpat citat</p>
+            <h3>Input</h3>
+                <p>Ingen input</p>
+            <h3>Output</h3>
+                <p><em>quote</em>: Slumpat citat från hårdkodad lista</p>
+                <p><em>author</em>: Citatets författare</p>
+                <p><em>date</em>: Serverdatum vid tillfälle för API-förfrågan (yyyy-mm-dd)</p>
+                <p><em>time</em>: Servertid vid tillfälle för API-förfrågan (hh-mm-ss 24h)</p>
+            
+{% endblock %}

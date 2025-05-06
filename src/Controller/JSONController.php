@@ -23,7 +23,7 @@ class JSONController
         ## Testing to read from json string - should move to read from file instead
         $quote_data = json_decode($json_start_data);
 
-        $max_index = (count($quote_data)-1);
+        $max_index = (count($quote_data) - 1);
         $rand_index = random_int(0, $max_index);
 
         ## Time zone
@@ -40,7 +40,7 @@ class JSONController
             'date' => $date_stamp,
             'time' => $time_stamp
         ];
-        
+
         ## Not using for now, but short if not pretty
         // return new JsonResponse($data);
 

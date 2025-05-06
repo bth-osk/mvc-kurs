@@ -8,7 +8,6 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class TwigController extends AbstractController
 {
-
     #[Route("/", name: "index")]
     public function index(): Response
     {

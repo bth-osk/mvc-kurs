@@ -8,6 +8,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 use App\Dice\Dice;
 use App\Dice\DiceGraphic;
+use App\Dice\DiceHand;
 
 class DiceGameController extends AbstractController
 {
@@ -50,5 +51,31 @@ class DiceGameController extends AbstractController
         ];
 
         return $this->render('pig/test/roll_many.html.twig', $data);
+    }
+
+    #[Route("/game/pig/test/dicehand/{num<\d+>}", name: "test_dicehand")]
+    public function testDiceHand(int $num): Response
+    {
+        if ($num > 99) {
+            throw new \Exception("Can not roll more than 99 dices!");
+        }
+
+        $hand = new DiceHand();
+        for ($i = 1; $i <= $num; $i++) {
+            if ($i % 2 === 1) {
+                $hand->add(new DiceGraphic());
+            } else {
+                $hand->add(new Dice());
+            }
+        }
+
+        $hand->roll();
+
+        $data = [
+            "num_dices" => $hand->getNumberDices(),
+            "diceRoll" => $hand->getString(),
+        ];
+
+        return $this->render('pig/test/dicehand.html.twig', $data);
     }
 }

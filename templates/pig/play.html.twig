@@ -5,6 +5,12 @@
 
 <p>You are playing with {{ pigDices }} dices.</p>
 
+<p>
+    {% for value in diceValues %}
+        <span class="die">{{ value }}</span>
+    {% endfor %}
+    </p>
+
 <p>Round: {{ pigRound }}</p>
 <p>Total: {{ pigTotal }}</p>
 

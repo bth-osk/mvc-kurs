@@ -34,6 +34,13 @@ class DiceGameController extends AbstractController
     {
         $numDice = $request->request->get('num_dices');
 
+        $hand = new DiceHand();
+        for ($i = 1; $i <= $numDice; $i++) {
+            $hand->add(new DiceGraphic());
+        }
+        $hand->roll();
+
+        $session->set("pig_dicehand", $hand);
         $session->set("pig_dices", $numDice);
         $session->set("pig_round", 0);
         $session->set("pig_total", 0);
@@ -46,10 +53,13 @@ class DiceGameController extends AbstractController
         SessionInterface $session
     ): Response
     {
+        $dicehand = $session->get("pig_dicehand");
+
         $data = [
             "pigDices" => $session->get("pig_dices"),
             "pigRound" => $session->get("pig_round"),
             "pigTotal" => $session->get("pig_total"),
+            "diceValues" => $dicehand->getString() 
         ];
 
         return $this->render('pig/play.html.twig', $data);

@@ -5,9 +5,17 @@
 
 <form method="post" action="">
     <p>
-        <input type="submit" name="roll" value="Roll">
-        <input type="submit" name="save" value="Save">
-        <input type="submit" name="restart" value="Restart">
+        <input type="submit" name="roll" value="Roll"
+        onClick="this.form.action='{{ path('pig_roll') }}';"
+        >
+
+        <input type="submit" name="save" value="Save"
+        onClick="this.form.action='{{ path('pig_save') }}';"
+        >
+        
+        <input type="submit" name="restart" value="Restart" 
+        onClick="this.form.action='{{ path('pig_init_get') }}';this.form.method='get';"
+        >
     </p>
 </form>
 

@@ -4,6 +4,8 @@ namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
 
 use App\Dice\Dice;
@@ -25,19 +27,32 @@ class DiceGameController extends AbstractController
     }
 
     #[Route("/game/pig/init", name: "pig_init_post", methods: ['POST'])]
-    public function initCallback(): Response
+    public function initCallback(
+        Request $request,
+        SessionInterface $session
+    ): Response
     {
-        // Deal with the submitted form
+        $numDice = $request->request->get('num_dices');
+
+        $session->set("pig_dices", $numDice);
+        $session->set("pig_round", 0);
+        $session->set("pig_total", 0);
 
         return $this->redirectToRoute('pig_play');
     }
 
     #[Route("/game/pig/play", name: "pig_play", methods: ['GET'])]
-    public function play(): Response
+    public function play(
+        SessionInterface $session
+    ): Response
     {
-        // Logic to play the game
+        $data = [
+            "pigDices" => $session->get("pig_dices"),
+            "pigRound" => $session->get("pig_round"),
+            "pigTotal" => $session->get("pig_total"),
+        ];
 
-        return $this->render('pig/play.html.twig');
+        return $this->render('pig/play.html.twig', $data);
     }
 
     #[Route("/game/pig/roll", name: "pig_roll", methods: ['POST'])]

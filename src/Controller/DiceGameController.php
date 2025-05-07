@@ -66,11 +66,28 @@ class DiceGameController extends AbstractController
     }
 
     #[Route("/game/pig/roll", name: "pig_roll", methods: ['POST'])]
-    public function roll(): Response
+    public function roll(
+        SessionInterface $session
+    ): Response
     {
-        // Logic to roll the dice
+        $hand = $session->get("pig_dicehand");
+        $hand->roll();
 
-        return $this->render('pig/play.html.twig');
+        $roundTotal = $session->get("pig_round");
+        $round = 0;
+        $values = $hand->getValues();
+        foreach ($values as $value) {
+            if ($value === 1) {
+                $round = 0;
+                $roundTotal = 0;
+                break;
+            }
+            $round += $value;
+        }
+
+        $session->set("pig_round", $roundTotal + $round);
+        
+        return $this->redirectToRoute('pig_play');
     }
 
     #[Route("/game/pig/save", name: "pig_save", methods: ['POST'])]

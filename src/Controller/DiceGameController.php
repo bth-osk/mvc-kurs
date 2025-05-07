@@ -7,6 +7,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 use App\Dice\Dice;
+use App\Dice\DiceGraphic;
 
 class DiceGameController extends AbstractController
 {
@@ -37,7 +38,8 @@ class DiceGameController extends AbstractController
 
         $diceRoll = [];
         for ($i = 1; $i <= $num; $i++) {
-            $die = new Dice();
+            // $die = new Dice();
+            $die = new DiceGraphic();
             $die->roll();
             $diceRoll[] = $die->getAsString();
         }

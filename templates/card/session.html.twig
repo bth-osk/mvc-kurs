@@ -1,0 +1,30 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Session debug{% endblock %}
+
+{% block body %}
+<h1>Session debug</h1>
+
+<p>Debug utskrifter nedan:</p>
+
+{% if session %}
+    <ul>
+        {% for key, value in session %}
+            <li>{{ key }} : {{ value }}</li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>[*/* Ingen sessionsdata finns sparad */*]</p>
+{% endif %}
+
+<form>
+    <p>
+        <input type="submit" name="reset" value="Reset session" 
+        onClick="this.form.action='{{ path('session_delete') }}';"
+        >
+    </p>
+</form>
+
+{{ include('card/flash.html.twig') }}
+
+{% endblock %}

@@ -42,4 +42,17 @@ class DiceHand
         }
         return $values;
     }
+
+    public function __toString(): string
+    {
+        $out_string = "";
+        
+        $values = $this->getString();
+        
+        foreach ($values as $value) {
+            $out_string = $out_string . $value;
+        }
+
+        return $out_string;
+    }
 }

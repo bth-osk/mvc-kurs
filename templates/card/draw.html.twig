@@ -1,0 +1,13 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Deck page{% endblock %}
+
+{% block body %}
+<h1>Dragning av kort</h1>
+
+<p class="cards">{{ drawn_card }}</p>
+{{ include('card/flash.html.twig') }}
+<p>Antalet kort kvar i kortleken är {{ remaining_cards }} stycken</p>
+<p class="cards">{{ card_graphics }}</p>
+
+{% endblock %}

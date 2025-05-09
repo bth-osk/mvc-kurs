@@ -130,11 +130,17 @@ input {
     font-size: 4em;
 }
 
+.cards {
+    font-size: 4em;
+}
+
 .flash-notice {
     padding: 0.5em;
     color: #004085;
     background-color: #cce5ff;
     border-color: #b8daff;
+    border-radius: 6px;
+    font-weight: 700;
 }
 .flash-notice:before {
     content: "ⓘ";
@@ -145,6 +151,8 @@ input {
     color: #856404;
     background-color: #fff3cd;
     border-color: #ffeeba;
+    border-radius: 6px;
+    font-weight: 700;
 }
 .flash-warning:before {
     content: "⚠";

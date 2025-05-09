@@ -100,7 +100,7 @@ class DeckOfCards
     public function __toString(): string
     {
         $out_string = "";
-                
+
         foreach ($this->cards as $card) {
             $out_string = $out_string . $card;
         }

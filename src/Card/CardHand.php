@@ -16,7 +16,7 @@ class CardHand
     public function __toString(): string
     {
         $out_string = "";
-                
+
         foreach ($this->hand as $card) {
             $out_string = $out_string . $card;
         }

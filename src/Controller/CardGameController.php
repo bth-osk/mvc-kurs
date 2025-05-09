@@ -7,7 +7,6 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
-
 use App\Card\Card;
 use App\Card\CardGraphic;
 use App\Card\DeckOfCards;
@@ -20,15 +19,14 @@ class CardGameController extends AbstractController
     {
         return $this->render('card/home.html.twig');
     }
-    
+
     #[Route("/session", name: "session")]
     public function session(
         SessionInterface $session
-    ): Response
-    {
-            $data = [
-                "session" => $session->all()
-            ];
+    ): Response {
+        $data = [
+            "session" => $session->all()
+        ];
 
         return $this->render('card/session.html.twig', $data);
     }
@@ -36,22 +34,21 @@ class CardGameController extends AbstractController
     #[Route("/session/delete", name: "session_delete")]
     public function session_delete(
         SessionInterface $session
-    ): Response
-    {
+    ): Response {
         $session->clear();
 
         $this->addFlash(
             'notice',
             'nu är sessionen raderad'
         );
-        
+
         return $this->redirectToRoute('session');
     }
 
     #[Route("/card/deck", name: "deck")]
     public function card_deck(): Response
     {
-        $deck = new DeckofCards;
+        $deck = new DeckofCards();
 
         $data = [
             "card_graphics" => $deck
@@ -63,9 +60,8 @@ class CardGameController extends AbstractController
     #[Route("/card/deck/shuffle", name: "deck_shuffle")]
     public function card_deck_shuffle(
         SessionInterface $session
-    ): Response
-    {
-        $deck = new DeckofCards;
+    ): Response {
+        $deck = new DeckofCards();
         $deck->shuffleDeck();
 
         $session->set("deck", $deck);
@@ -80,16 +76,15 @@ class CardGameController extends AbstractController
     #[Route("/card/deck/draw", name: "deck_draw")]
     public function card_deck_draw(
         SessionInterface $session
-    ): Response
-    {
+    ): Response {
         if ($session->get("deck")) {
             $deck = $session->get("deck");
         } else {
-            $deck = new DeckofCards;
+            $deck = new DeckofCards();
             $deck->shuffleDeck();
             $session->set("deck", $deck);
         }
-        
+
         if ($deck->getLength() >= 1) {
             $drawn_card = $deck->draw();
         } else {
@@ -113,12 +108,11 @@ class CardGameController extends AbstractController
     public function drawMulti(
         int $num,
         SessionInterface $session
-        ): Response
-    {
+    ): Response {
         if ($session->get("deck")) {
             $deck = $session->get("deck");
         } else {
-            $deck = new DeckofCards;
+            $deck = new DeckofCards();
             $deck->shuffleDeck();
             $session->set("deck", $deck);
         }
@@ -132,8 +126,8 @@ class CardGameController extends AbstractController
         } else {
             $hand = new CardHand();
             for ($i = 1; $i <= $num; $i++) {
-                    $hand->add($deck->draw());
-                }
+                $hand->add($deck->draw());
+            }
         }
 
         $data = [
@@ -142,6 +136,7 @@ class CardGameController extends AbstractController
             "drawn_card" => $hand
         ];
 
-        return $this->render('card/draw.html.twig', $data);;
+        return $this->render('card/draw.html.twig', $data);
+        ;
     }
 }

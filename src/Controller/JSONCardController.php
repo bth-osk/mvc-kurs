@@ -11,7 +11,7 @@ use App\Card\CardHand;
 
 class JSONCardController
 {
-    #[Route("/api/deck")]
+    #[Route("/api/deck", name: "json_card_deck")]
     public function jsonDeck(): Response
     {
 
@@ -29,7 +29,7 @@ class JSONCardController
         return $response;
     }
 
-    #[Route("/api/deck/shuffle")]
+    #[Route("/api/deck/shuffle", name: "json_card_deck_shuffle")]
     public function jsonDeckShuffle(
         SessionInterface $session
     ): Response {
@@ -50,7 +50,7 @@ class JSONCardController
         return $response;
     }
 
-    #[Route("/api/deck/draw")]
+    #[Route("/api/deck/draw", name: "json_card_deck_draw")]
     public function jsonDeckDraw(
         SessionInterface $session
     ): Response {
@@ -86,7 +86,7 @@ class JSONCardController
         return $response;
     }
 
-    #[Route("/api/deck/draw/{num<\d+>}")]
+    #[Route("/api/deck/draw/{num<\d+>}", name: "json_card_deck_draw_num")]
     public function jsonDeckDrawMulti(
         int $num,
         SessionInterface $session

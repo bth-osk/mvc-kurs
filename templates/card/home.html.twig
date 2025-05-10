@@ -5,7 +5,7 @@
 {% block body %}
 <h1>Landningssida för kortspel</h1>
 
-<p>Nedan listas efterfrågade sidor för kmom02</p>
+<h3>Länkar för kortsidor</h3>
 
 <ul>
     <li><a href="{{ path('deck') }}">deck</a></li>
@@ -13,7 +13,13 @@
     <li><a href="{{ path('deck_draw') }}">deck/draw</a></li>
 </ul> 
 
-<p>Sessions-vägar</p>
+<h3>Klasser och deras relation</h3>
+
+<img src="{{ asset('img/uml_mvc_kmom02.png') }}" alt="UML-diagram">
+
+<p>Klasserna Card, CardGraphic, CardHand och DeckOfCards används för underliggande logik till kortlekshanteringen. CardGraphic ärver från Card, medan CardHand samt DeckOfCards har en kompositionsrelation med CardGraphic.</p>
+
+<h3>Sessionsvägar</h3>
 
 <ul>
     <li><a href="{{ path('session') }}">session</a></li>

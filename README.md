@@ -12,3 +12,6 @@ git clone https://github.com/bth-osk/mvc-kurs
 ```
 
 ![Protein view](/public/img/bw.png)
+
+Developed with PHP version 8.4.6 and Symfony version 7.2.5.
+Makes use of Encore: https://symfony.com/doc/current/frontend/encore/installation.html 

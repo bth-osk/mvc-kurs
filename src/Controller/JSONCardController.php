@@ -85,4 +85,44 @@ class JSONCardController
         );
         return $response;
     }
+
+    #[Route("/api/deck/draw/{num<\d+>}")]
+    public function jsonDeckDrawMulti(
+        int $num,
+        SessionInterface $session
+    ): Response {
+        if ($session->get("deck")) {
+            $deck = $session->get("deck");
+        } else {
+            $deck = new DeckofCards();
+            $deck->shuffleDeck();
+            $session->set("deck", $deck);
+        }
+
+        $cards_left = $deck->getLength();
+
+        if ($cards_left >= $num) {
+            $hand = new CardHand();
+            for ($i = 1; $i <= $num; $i++) {
+                $hand->add($deck->draw());
+            }
+            $cards_left = $cards_left - $num;
+
+            $data = [
+            "drawnCardsUTF8Graphics" => $hand->__toString(),
+            "cardsLeftInDeck" => $cards_left
+            ];
+        } else {
+            $data = [
+            "drawnCardsUTF8Graphics" => null,
+            "cardsLeftInDeck" => $cards_left
+        ];
+        }
+
+        $response = new JsonResponse($data);
+        $response->setEncodingOptions(
+            $response->getEncodingOptions() | JSON_PRETTY_PRINT
+        );
+        return $response;
+    }
 }

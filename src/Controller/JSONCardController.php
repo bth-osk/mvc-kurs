@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Card\DeckOfCards;
 
@@ -18,6 +19,28 @@ class JSONCardController
         $data = [
             "deckUTF8Graphics" => $deck->__toString(),
             "deckAllowedCardNames" => $deck->getPossibleCardNames()
+        ];
+
+        $response = new JsonResponse($data);
+        $response->setEncodingOptions(
+            $response->getEncodingOptions() | JSON_PRETTY_PRINT
+        );
+        return $response;
+    }
+
+        #[Route("/api/deck/shuffle")]
+    public function jsonDeckShuffle(
+        SessionInterface $session
+    ): Response
+    {
+
+        $deck = new DeckofCards();
+        $deck->shuffleDeck();
+
+        $session->set("deck", $deck);
+
+        $data = [
+            "shuffledDeckUTF8Graphics" => $deck->__toString(),
         ];
 
         $response = new JsonResponse($data);

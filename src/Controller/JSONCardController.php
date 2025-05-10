@@ -32,8 +32,7 @@ class JSONCardController
     #[Route("/api/deck/shuffle")]
     public function jsonDeckShuffle(
         SessionInterface $session
-    ): Response
-    {
+    ): Response {
 
         $deck = new DeckofCards();
         $deck->shuffleDeck();
@@ -54,8 +53,7 @@ class JSONCardController
     #[Route("/api/deck/draw")]
     public function jsonDeckDraw(
         SessionInterface $session
-    ): Response
-    {
+    ): Response {
 
         if ($session->get("deck")) {
             $deck = $session->get("deck");

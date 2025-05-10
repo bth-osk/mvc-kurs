@@ -110,7 +110,8 @@ class DeckOfCards
 
     public function getPossibleCardNames(): string
     {
-        return implode(",", $this->card_types);;
+        return implode(",", $this->card_types);
+        ;
     }
 
 }

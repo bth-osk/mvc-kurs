@@ -68,14 +68,16 @@ class JSONCardController
         if ($cards_left >= 1) {
             $drawn_card = $deck->draw();
             $cards_left = $cards_left - 1;
-        } else {
-            $drawn_card = null;
-        }
-
-        $data = [
-            "drawnCardUTF8Graphics" => $deck->__toString(),
+            $data = [
+            "drawnCardUTF8Graphics" => $drawn_card->__toString(),
             "cardsLeftInDeck" => $cards_left
         ];
+        } else {
+            $data = [
+            "drawnCardUTF8Graphics" => null,
+            "cardsLeftInDeck" => $cards_left
+        ];
+        }
 
         $response = new JsonResponse($data);
         $response->setEncodingOptions(

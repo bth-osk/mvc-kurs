@@ -17,4 +17,22 @@
         <p>Jag överblickade främst artikeln, och har inte läst den till den grad att jag är helt bekväm med att peka på delar jag skulle mena på vara mer värdefulla än andra. I och med att jag ombeds lyfta fram någon del av artikeln, kan jag något forcerat nämna att jag uppskattade uppgifterna/varningarna om bristande UTF-8 hantering i PHP som språk. Inklusive exempel som gavs på att vissa funktioner inte hanterar UTF-8 strängar på ett bra/korrekt sätt.</p>
     <h3>Vilken är din TIL för detta kmom?</h3>
         <p>Att ramverk, likt namnet antyder, troligtvis är besläktat med konceptet huvudvärk.</p>
-{% endblock %}
+
+    <hr>
+
+        <h2 id="kmom02">kmom02</h2>
+
+    <h3>Förklara kort de objektorienterade konstruktionerna arv, komposition, interface och trait och hur de används i PHP.</h3>
+        <p>Arv gör det möjligt att introducera nya klasser med unika metoder/egenskaper, men som dessutom ärver egenskaper/funktionalitet från sin förälder</p>
+        <p>Komposition förmedlar ett förhållande där en klass kan nyttja/inneha instanser av en annan klass, utan en arvsmässig koppling.</p>
+        <p>Interface gör det möjligt att specificera vilka metoder och egenskaper som förväntas finnas hos en klass (som ska använda interface:t som specificerats), utan att behöva gå in i frågan om exakt implementering.</p>
+        <p>Trait gör det möjligt att beskriva funktionalitet (likt metoder) för återanvändning inom flera olika klasser, utan att kräva en arvsrelation hos klasserna som ska ("åter-") använda denna funktionalitet.</p>
+    <h3>Berätta om din implementation från uppgiften. Hur löste du uppgiften, är du nöjd/missnöjd, vilken förbättringspotential ser du i din koden och dina klasser?</h3>
+        <p>Jag valde att följa upplägget från tärningsspelet i övningen, samt representera korttyperna med UTF-8 symboler. Korttyperna fick egenskapade namn. Dessa namn används i princip inte till annat än att "översätta" till UTF-8 symboler, och hade kunnat användas mer systematiskt. Övningsmässigt känns det helt OK, men utan att ha någon senare tillämpning av kortleken i åtanke, är det oklart för mig om det är en (nog) god implementation. Valet av JSON svar och dess namngivning är inte speciellt konsekvent, och det hade varit trevligt att tänka igenom dessa mer utifrån framtida tillämpningar. 
+        </p>
+    <h3>Vilka är dina reflektioner så här långt med att jobb i Symfony med applikationskod enligt MVC?</h3>
+        <p>Det känns lite smidigare nu än i kmom01. Att i huvudsak kunna jobba mot objekt/klass metoder i router-funktionerna är rätt trevligt.</p>
+    <h3>Vilken är din TIL för detta kmom?</h3>
+        <p>Att det finns UTF-8 symboler för kortleks kort</p>
+
+        {% endblock %}

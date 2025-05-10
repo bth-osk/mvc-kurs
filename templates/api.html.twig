@@ -4,9 +4,8 @@
 
 {% block body %}
     <h1>API lista</h1>
-        <h2>quote</h2>
+        <h2>quote [kmom01]</h2>
             <p>Svar med slumpat citat</p>
-
             <h3>Link</h3>
                 <a href="{{ path('json_quote') }}">quote API route</a>
             <h3>Input</h3>
@@ -16,5 +15,58 @@
                 <p><em>author</em>: Citatets författare</p>
                 <p><em>date</em>: Serverdatum vid tillfälle för API-förfrågan (yyyy-mm-dd)</p>
                 <p><em>time</em>: Servertid vid tillfälle för API-förfrågan (hh-mm-ss 24h)</p>
-            
+
+        <hr>
+        <br>
+        <h2>Cards [kmom02]</h2>
+        <hr>
+
+        <h2>deck</h2>
+            <p>Svar med ordnad (komplett) kortlek</p>
+            <h3>Link</h3>
+                <a href="{{ path('json_card_deck') }}">deck API route</a>
+            <h3>Input</h3>
+                <p>Ingen input</p>
+            <h3>Output</h3>
+                <p><em>deckUTF8Graphics</em>: String-lista (ordnad) med UTF8 representation av samtliga tillåtna kort</p>
+                <p><em>deckAllowedCardNames</em>: Kommaseparerad string (ordnad listning) med samtliga tillåtna kortnamn</p>
+        
+        <hr>
+
+        <h2>deck/shuffle</h2>
+            <p>Svar med blandad (komplett) kortlek. Kortleken sparas i aktuell session</p>
+            <h3>Link</h3>
+                <a href="{{ path('json_card_deck_shuffle') }}">card/deck/shuffle API route</a>
+            <h3>Input</h3>
+                <p>Ingen input</p>
+            <h3>Output</h3>
+                <p><em>shuffledDeckUTF8Graphics</em>: String-lista (blandade kort) med UTF8 representation av samtliga tillåtna kort</p>
+
+        <hr>
+
+        <h2>deck/draw</h2>
+            <p>Ett kort dras från kortleken och skickas som svar tillsammans med antal kvarvarande kort</p>
+            <p>Eventuell kortlek från aktuell session används, annars skapas en ny blandad kortlek.</p>
+            <h3>Link</h3>
+                <a href="{{ path('json_card_deck_draw') }}">card/deck/draw API route</a>
+            <h3>Input</h3>
+                <p>Ingen input</p>
+            <h3>Output</h3>
+                <p><em>drawnCardUTF8Graphics</em>: String-svar (UTF8 representation av kortet) för ett draget kort. Null svar ifall inga kort kvar att dra. </p>
+                <p><em>cardsLeftInDeck</em>: [int] Antal kvarvarande kort i kortleken</p>
+
+        <hr>
+
+        <h2>deck/draw/:num</h2>
+            <p>Valfritt antal kort dras från kortleken och skickas som svar tillsammans med antal kvarvarande kort</p>
+            <p>Eventuell kortlek från aktuell session används, annars skapas en ny blandad kortlek.</p>
+            <h3>Link</h3>
+                <a href="{{ path('json_card_deck_draw_num', { 'num': 3 }) }}">card/deck/draw/:number API route</a>
+                <p>[exemplet ovan med input för att dra tre kort]</p>
+            <h3>Input</h3>
+                <p><em>num</em>: Integer för antalet kort att dra. </p>
+            <h3>Output</h3>
+                <p><em>drawnCardsUTF8Graphics</em>: String-svar (UTF8 representation av korten) för det antal kort som efterfrågats. Null svar ifall inte nog många kort finns kvar att dra. </p>
+                <p><em>cardsLeftInDeck</em>: [int] Antal kvarvarande kort i kortleken</p>
+            <hr>
 {% endblock %}
